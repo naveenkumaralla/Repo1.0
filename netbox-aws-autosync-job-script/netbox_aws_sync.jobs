@@ -1,7 +1,7 @@
 from extras.scripts import Script
 
 from netbox_aws_sync.models import AWSCredential
-from netbox_aws_sync.sync import sync_credential
+from netbox_aws_sync.jobs import sync_credential
 
 
 class SyncAllAWSResources(Script):
