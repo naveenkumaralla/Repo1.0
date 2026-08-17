@@ -18,13 +18,13 @@ user-add ()
   echo "Adding user $USER ..."
   echo `useradd -c "$COMMENTS" $USER`
  # echo `passwd $USER`
-  echo $PASSWORD | `passwd --stdin $USER>>/tmp/chpassword.log`
+  #echo $PASSWORD | `passwd --stdin $USER>>/tmp/chpassword.log`
   echo "`date` Added user $USER ($COMMENTS) with pass $PASSWORD">>/tmp/userdata.log
     }
 
 # Main body of script starts here
 ###
 echo "Start of script..."
-user-add nani $(date | md5sum | cut -c1-12) nanialla2005@gmail.com
+user-add $USER $(date | md5sum | cut -c1-12) $USER
 #user-add bilko worsepassword Sgt. Bilko the role model
-echo "End of script..."
+echo "End of script...
