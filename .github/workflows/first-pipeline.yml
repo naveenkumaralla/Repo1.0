@@ -35,6 +35,3 @@ jobs:
         run: |
           echo "Error: Database connection timed out!"
           exit 1  # This forces GitHub to mark this step as a failure
-
-      - name: Step 3 - Report success
-        run: echo "All tests passed successfully!" # This step will be skipped!
