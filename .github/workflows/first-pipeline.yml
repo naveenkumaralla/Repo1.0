@@ -2,7 +2,7 @@ name: Learning GitHub Secrets
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   use-secret-job:
