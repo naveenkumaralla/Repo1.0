@@ -1,0 +1,36 @@
+# 1. The name of your automation pipeline
+name: My First GitHub Action
+
+# 2. Trigger: When should this pipeline run?
+on:
+  push:
+    branches: [ "dev" ]  # Runs every time you push code to the main branch
+
+# 3. The actual tasks to execute
+jobs:
+  build-and-compile:
+    runs-on: ubuntu-latest  # The isolated container/machine provided for free by GitHub
+    steps:
+      - name: Step 1 - Print a welcome message
+        run: echo "Starting the compilation phase..."
+
+      - name: Step 2 - Simulate creating application files
+        run: |
+          mkdir build/
+          echo "Simulated Application Files" > build/app.txt
+
+      - name: Step 3 - Finish phase
+        run: echo "Code successfully compiled!"
+
+  run-tests:
+    needs: build-and-compile  # Forces this job to wait until the build job finishes successfully
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Simulate running code tests
+        run: |
+          echo "Starting automated unit tests..."
+          echo "Checking system health..."
+          
+      - name: Step 2 - Report success
+        run: echo "All tests passed successfully!"
+
