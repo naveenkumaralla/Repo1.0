@@ -1,37 +1,24 @@
-# 1. The name of your automation pipeline
-name: My First GitHub Action
+name: Learning GitHub Secrets
 
-# 2. Trigger: When should this pipeline run?
 on:
   push:
-    branches: [ "dev" ]  # Runs every time you push code to the main branch
+    branches: [ "main" ]
 
-# 3. The actual tasks to execute
 jobs:
-  build-and-compile:
-    runs-on: ubuntu-latest  # The isolated container/machine provided for free by GitHub
-    steps:
-      - name: Step 1 - Print a welcome message
-        run: echo "Starting the compilation phase..."
-
-      - name: Step 2 - Simulate creating application files
-        run: |
-          mkdir build/
-          echo "Simulated Application Files" > build/app.txt
-
-      - name: Step 3 - Finish phase
-        run: echo "Code successfully compiled!"
-
-    run-tests:
-    needs: build-and-compile
+  use-secret-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1 - Simulate running code tests
-        run: |
-          echo "Starting automated unit tests..."
-          echo "Checking system health..."
+      # Step 1: Normal step
+      - name: Preparing environment
+        run: echo "Connecting to the database environment..."
 
-      - name: Step 2 - Oh no, a test failed!
+      # Step 2: Injecting the secret as an Environment Variable
+      - name: Connect to Database safely
+        env:
+          # This pulls the hidden secret from GitHub and names it DB_PASS inside this step
+          DB_PASS: ${{ secrets.MY_DATABASE_PASSWORD }}
         run: |
-          echo "Error: Database connection timed out!"
-          exit 1  # This forces GitHub to mark this step as a failure
+          echo "Attempting database connection..."
+          # Let's try to print the secret to see what GitHub does
+          echo "The database password being used is: $DB_PASS"
+
