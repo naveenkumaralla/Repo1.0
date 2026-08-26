@@ -1,0 +1,24 @@
+name: Learning GitHub Secrets
+
+on:
+  push:
+    branches: [ "dev" ]
+
+jobs:
+  use-secret-job:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Normal step
+      - name: Preparing environment
+        run: echo "Connecting to the database environment..."
+
+      # Step 2: Injecting the secret as an Environment Variable
+      - name: Connect to Database safely
+        env:
+          # This pulls the hidden secret from GitHub and names it DB_PASS inside this step
+          DB_PASS: ${{ secrets.MY_DATABASE_PASSWORD }}
+        run: |
+          echo "Attempting database connection..."
+          # Let's try to print the secret to see what GitHub does
+          echo "The database password being used is: $DB_PASS"
+
