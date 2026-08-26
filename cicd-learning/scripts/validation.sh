@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-if [[ $# -ne 1 ]]; then
-    echo "Usage: $0 <name>"
+if [[ $# -ne 1 || -z "$1" ]]; then
+    echo "Error: exactly one non-empty name is required." >&2
+    echo "Usage: $0 <name>" >&2
     exit 1
 fi
 
-echo "Hello, $1"
+name="$1"
+
+echo "Hello, ${name}!"
