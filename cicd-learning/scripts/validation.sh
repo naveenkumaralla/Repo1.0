@@ -9,3 +9,4 @@ fi
 name="$1"
 
 echo "Hello, ${name}!"
+echo "Welcome to the CI/CD lab!"
