@@ -8,6 +8,5 @@ fi
 
 name="$1"
 
-echo "BROKEN OUTPUT"
 echo "Hello, ${name}!"
 echo "Welcome to the CI/CD lab!"
